@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class RequestController : MonoBehaviour
+public class RequestManager : MonoBehaviour
 {
+    public GameObject RequestOBJ;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
