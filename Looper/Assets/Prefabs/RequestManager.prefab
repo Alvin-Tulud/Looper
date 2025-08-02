@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4716814827753653929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9049387470159877543}
+  - component: {fileID: 3688207546829149691}
+  m_Layer: 0
+  m_Name: RequestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9049387470159877543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716814827753653929}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.051557362, y: 0.23922405, z: 0.061173044}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3688207546829149691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4716814827753653929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83f484fc51cc7d42bffc8dfc64b709d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RequestOBJ: {fileID: 0}
+  charCounts: 5000000064000000780000008c000000a0000000b4000000c8000000
+  emailSubjectPerson:
+  - son waterpolo
+  - daughter tennis
+  - daughter basketball
+  - dog adoption
+  - cat adoption
+  - racing
+  emailSubjectTopic:
+  - presentation
+  - report
+  - email
+  - meeting
+  emailTone:
+  - happy
+  - sad
+  - angry
+  emailVerbPerson:
+  - victory
+  - failure
+  - win
+  - loss
+  - event
+  - party
+  emailVerbTopic:
+  - failure
+  - success
+  - misunderstanding
+  - situation
+  names: []
