@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 public class DragWindow : MonoBehaviour
 {
     [SerializeField]
-    private Canvas canvas;
+    public Canvas canvas;
 
     public void DragHandler(BaseEventData data)
     {
