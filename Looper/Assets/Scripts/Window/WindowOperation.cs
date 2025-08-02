@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class MinimizeWindow : MonoBehaviour
+public class WindowOperation : MonoBehaviour
 {
+    public GameObject entireObject;
     public GameObject window;
 
     public void minimize()
@@ -12,5 +13,10 @@ public class MinimizeWindow : MonoBehaviour
     public void maximize()
     {
         window.SetActive(true);
+    }
+
+    public void close()
+    {
+        Destroy(entireObject);
     }
 }
