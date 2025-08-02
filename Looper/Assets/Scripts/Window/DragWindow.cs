@@ -1,22 +1,43 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.PlayerSettings;
 
 public class DragWindow : MonoBehaviour
 {
-    [SerializeField]
     public Canvas canvas;
+    public Vector2 offset;
+    public RectTransform rectTransform;
 
-    public void DragHandler(BaseEventData data)
+    private void Awake()
     {
-        PointerEventData pointerData = (PointerEventData) data;
+        rectTransform = GetComponent<RectTransform>();
+        canvas = GetComponentInParent<Canvas>();
+    }
 
-        Vector2 pos;
+
+    public void beginDrag(BaseEventData baseData)
+    { 
+    PointerEventData data = (PointerEventData) baseData;
+    
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             (RectTransform)canvas.transform,
-            pointerData.position,
-            canvas.worldCamera,
-            out pos);
+            data.position,
+            data.pressEventCamera,
+            out offset);
 
-        transform.position = canvas.transform.TransformPoint(pos);
+        offset =  (Vector2) rectTransform.anchoredPosition - offset;
+    }
+
+    public void DragHandler(BaseEventData baseData)
+    {
+        PointerEventData data = (PointerEventData)baseData;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            (RectTransform)canvas.transform,
+            data.position,
+            data.pressEventCamera,
+            out Vector2 pos);
+
+        rectTransform.anchoredPosition = pos + offset;
     }
 }

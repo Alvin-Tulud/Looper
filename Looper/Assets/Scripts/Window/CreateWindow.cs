@@ -5,7 +5,6 @@ using UnityEngine.UIElements;
 
 public class CreateWindow : MonoBehaviour
 {
-    public Canvas canvas;
     [SerializeField]
     private GameObject prefabToSpawn;
     public Transform spawnPoint;
@@ -17,17 +16,6 @@ public class CreateWindow : MonoBehaviour
         if (spawnPoint != null)
         {
             GameObject newWindow = Instantiate(prefabToSpawn);
-
-            // Get all ChildScript components in children
-            DragWindow[] childComponents = newWindow.GetComponentsInChildren<DragWindow>();
-
-            print(childComponents);
-
-            // Iterate and modify variables
-            foreach (DragWindow child in childComponents)
-            {
-                child.canvas = canvas;
-            }
 
             if (mailParent != null)
             {
