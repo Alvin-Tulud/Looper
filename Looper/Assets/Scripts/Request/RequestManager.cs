@@ -12,7 +12,7 @@ public class RequestManager : MonoBehaviour
     public string[] emailVerbTopic = {"failure","success","misunderstanding","situation"};
     public string[] names = { };
 
-    public string[] EmailBuilder()
+    public void RequestBuilder()
     {//0:email string, 1:charcount, 2:subject, 3:tone, 4:verb, 5:rateup, 6:ratedown, 7:name
         string[] requestArr = new string[8] {"", "", "", "", "", "", "", ""};
         int randChar = Random.Range(0, charCounts.Length);
@@ -61,6 +61,6 @@ public class RequestManager : MonoBehaviour
                         requestArr[1] +
                         " characters.";
 
-        return requestArr;
+
     }
 }
