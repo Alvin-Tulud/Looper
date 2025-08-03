@@ -24,11 +24,13 @@ public class TextInputHandler : MonoBehaviour
     // Put "add email to thing" button here
     public void PressScheduleButton()
     {
+        Debug.Log(inputText);
         EmailLooper e = GameObject.FindWithTag("EmailLooper").GetComponent<EmailLooper>();
         bool result = e.AddEmail(inputText);
 
         if(result)
         {
+            Debug.Log("Added email: " + inputText);
             Destroy(transform.parent.parent.parent.gameObject);
         }
 

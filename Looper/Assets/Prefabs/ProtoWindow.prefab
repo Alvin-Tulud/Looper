@@ -1781,12 +1781,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 2627539709356739096}
     m_Modifications:
     - target: {fileID: 403207136158155960, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
+      propertyPath: m_LineType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 403207136158155960, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
       propertyPath: m_CharacterLimit
       value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 403207136158155960, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 403207136158155960, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GetInput
       objectReference: {fileID: 0}
     - target: {fileID: 5401688110983675210, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
       propertyPath: m_text
       value: Write email here...
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262980510688476630, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8251151552359058833, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
       propertyPath: m_SizeDelta.x

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using System;
 using UnityEngine.UI;
 
 public class EmailLooper : MonoBehaviour
@@ -10,7 +11,7 @@ public class EmailLooper : MonoBehaviour
     // and then 
 
     private GameObject pointer; // Reference to the spinny pointer
-    private int readingEmailIndex; // Which email (which quadrant on the scheduler) was just sent?
+    [SerializeField] private int readingEmailIndex; // Which email (which quadrant on the scheduler) was just sent?
     public string[] loadedEmails;   // The emails that are in the auto-scheduler
     public int loadedEmailIndex;    // Number of loaded emails
 
@@ -48,7 +49,7 @@ public class EmailLooper : MonoBehaviour
         // - Delete last hour's email
         if (TimeVars.getCurrent() % TimeVars.getHourFrame() == 0)
         {
-            readingEmailIndex++;
+
             // get the email from the stack
             // (currentEmailIndex % 4)
             // FIRE AWAY at every available coworker request
@@ -67,12 +68,13 @@ public class EmailLooper : MonoBehaviour
                 }
             }
 
-
+            readingEmailIndex++;
 
             // Delete last hour's email
             // idk if this if statement is even necessary
-            if (loadedEmails[(readingEmailIndex - 1) % 4] != null)
+            if (String.IsNullOrWhiteSpace(loadedEmails[(readingEmailIndex - 1) % 4]))
             {
+                Debug.Log("Deleting this email: " + loadedEmails[(readingEmailIndex - 1) % 4] + "@ position " + (readingEmailIndex - 1) % 4);
                 loadedEmails[(readingEmailIndex - 1) % 4] = null;
                 quadrants[(readingEmailIndex - 1) % 4].color = Color.white;
             }
@@ -83,7 +85,7 @@ public class EmailLooper : MonoBehaviour
     public bool AddEmail(string email)
     {
         // If there's space, add an email in that quadrant then move to the next
-        if(loadedEmails[loadedEmailIndex] == null)
+        if(String.IsNullOrWhiteSpace(loadedEmails[loadedEmailIndex]))
         {
             // add email here
             loadedEmails[loadedEmailIndex] = email;
