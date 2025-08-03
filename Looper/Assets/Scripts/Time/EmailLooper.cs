@@ -51,12 +51,16 @@ public class EmailLooper : MonoBehaviour
             // foreach(requestController in [all children of gridContent])
             // if(request.getCanCheck)
             //      CheckEmailScore(email, request.GetEmailArgs);
-            
+
 
 
             // Delete last hour's email
-            // (currentEmailIndex-1) % 4
-            // (if != null, numberOfLoadedEmails--)
+            // idk if this if statement is even necessary
+            if (loadedEmails[(readingEmailIndex - 1) % 4] != null)
+            {
+                loadedEmails[(readingEmailIndex - 1) % 4] = null;
+                quadrants[(readingEmailIndex - 1) % 4].color = Color.white;
+            }
         }
     }
 
