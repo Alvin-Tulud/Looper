@@ -13,6 +13,7 @@ public class RequestController : MonoBehaviour
     public TextMeshProUGUI ratingDown;
     private string[] emailArgs;
 
+    private bool canCheck = false;
     private bool requestCompleted = false;
 
     private void FixedUpdate()
@@ -28,6 +29,7 @@ public class RequestController : MonoBehaviour
         }
         else
         {
+            canCheck = true;
             requestTimeSlider.value = requestTimeSlider.maxValue;
         }
     }
@@ -54,4 +56,6 @@ public class RequestController : MonoBehaviour
     public void setRequestCompleted(bool requestCompleted) { this.requestCompleted = requestCompleted; }
 
     public bool getRequestCompleted() { return requestCompleted; }
+
+    public bool getCanCheck() {  return canCheck; }
 }
