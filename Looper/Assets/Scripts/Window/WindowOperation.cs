@@ -4,6 +4,7 @@ public class WindowOperation : MonoBehaviour
 {
     public GameObject entireObject;
     public GameObject window;
+    public GameObject icon;
 
     public void minimize()
     {
@@ -17,6 +18,8 @@ public class WindowOperation : MonoBehaviour
 
     public void close()
     {
+        Destroy(window);
+        Destroy(icon);
         Destroy(entireObject);
     }
 }

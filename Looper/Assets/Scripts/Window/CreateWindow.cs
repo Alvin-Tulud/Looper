@@ -7,6 +7,7 @@ public class CreateWindow : MonoBehaviour
 {
     [SerializeField]
     private GameObject prefabToSpawn;
+    public GameObject taskbar;
     public Transform spawnPoint;
     public GameObject mailParent;
 
@@ -19,7 +20,11 @@ public class CreateWindow : MonoBehaviour
     {
         if (spawnPoint != null)
         {
+            // Spawn both items first
             GameObject newWindow = Instantiate(prefabToSpawn, spawnPoint.transform.position, spawnPoint.transform.rotation,mailParent.transform);
+
+            // Then move the icon to the taskbar
+            newWindow.transform.GetChild(1).transform.SetParent(taskbar.transform,false);
         }
         else
         {

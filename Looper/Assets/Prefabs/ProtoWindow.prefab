@@ -401,6 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entireObject: {fileID: 2589995894500821075}
   window: {fileID: 1890463046065893660}
+  icon: {fileID: 2501395040994454151}
 --- !u!1 &3087435580653798993
 GameObject:
   m_ObjectHideFlags: 0
