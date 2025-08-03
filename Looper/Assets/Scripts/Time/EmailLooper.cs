@@ -20,6 +20,8 @@ public class EmailLooper : MonoBehaviour
 
     [SerializeField] Image[] quadrants = new Image[4];
 
+    [SerializeField] GameObject gridContent;
+
     void Start()
     {
         pointer = GameObject.FindWithTag("LooperPointer");
@@ -49,6 +51,7 @@ public class EmailLooper : MonoBehaviour
             // foreach(requestController in [all children of gridContent])
             // if(request.getCanCheck)
             //      CheckEmailScore(email, request.GetEmailArgs);
+            
 
 
             // Delete last hour's email
@@ -58,7 +61,7 @@ public class EmailLooper : MonoBehaviour
     }
 
     // Adds the email to the list of emails
-    public void AddEmail(string email)
+    public bool AddEmail(string email)
     {
         // If there's space, add an email in that quadrant then move to the next
         if(loadedEmails[loadedEmailIndex] == null)
@@ -71,7 +74,11 @@ public class EmailLooper : MonoBehaviour
             
             // increment quadrant
             loadedEmailIndex = (loadedEmailIndex + 1) % 4;
+
+            return true;
         }
+
+        return false;
     }
 
     // TLDR:

@@ -25,8 +25,12 @@ public class TextInputHandler : MonoBehaviour
     public void PressScheduleButton()
     {
         EmailLooper e = GameObject.FindWithTag("EmailLooper").GetComponent<EmailLooper>();
-        e.AddEmail(inputText);
+        bool result = e.AddEmail(inputText);
 
-        Destroy(transform.parent.parent.parent.gameObject);
+        if(result)
+        {
+            Destroy(transform.parent.parent.parent.gameObject);
+        }
+
     }
 }
