@@ -1558,9 +1558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4776784762332960428, guid: 10c6738b0d5befa46afb3736a330c0fb, type: 3}
       propertyPath: m_text
-      value: 'Add New Window
-
-'
+      value: Write New Email
       objectReference: {fileID: 0}
     - target: {fileID: 4776784762332960428, guid: 10c6738b0d5befa46afb3736a330c0fb, type: 3}
       propertyPath: m_fontSize
