@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using System.IO;
 
 public class TextInputHandler : MonoBehaviour
 {
@@ -10,21 +11,25 @@ public class TextInputHandler : MonoBehaviour
     [SerializeField] private string inputText; // Stores the text string here
     [SerializeField] private int finalRating; // Rating +/- to be applied when the email is sent
 
+    [SerializeField] private string toneFilePath;   // Path for the file where the tone words are kept
+
     // (Delimit all kinds of spaces, grammar, etc. to get just the words out.
     // Helps in cases like son's -> find the word "son" within)
-    private char[] delimiterChars = {' ', ',', '.', ':', ';', '-', '\t', '\'', '\"', '/', '\n', '*'};
+    private char[] delimiterChars = {' ', ',', '.', ':', ';', '\t', '\'', '\"', '/', '\n', '*'};
 
     // Email stats/criteria
     //private string[] emailSubject;
     //private string[] emailTone;
     //private string[] emailVerb;
     [SerializeField] private string[] emailCriteria; // List of all words needed for the email
+    private string emailTone;
     private int charCount;          // Minimum char count
     [SerializeField] private int rateUp;             // Score if passed
     [SerializeField] private int rateDown;           // Score if failed
 
     // Booleans to check if criteria are met
     [SerializeField] private bool[] criteriaMet;
+    private bool toneMet;
 
     void Start()
     {
@@ -41,6 +46,8 @@ public class TextInputHandler : MonoBehaviour
         rateUp = 5;
         rateDown = -5;
 
+        // (store tone separately)
+
         // (and then initialize bools based on length of subject/tone/verb)
         criteriaMet = new bool[emailCriteria.Length];
     }
@@ -51,6 +58,8 @@ public class TextInputHandler : MonoBehaviour
         inputText = input;
     }
 
+    // TODO:
+    // vv Rewrite to check against all available coworker things
 
     // Compares typed email to given parameters (subject, tone, etc.) to determine score.
     // If charCount met and every needed word is present, returns rateUp, otherwise returns rateDown.
@@ -67,7 +76,8 @@ public class TextInputHandler : MonoBehaviour
             return;
         }
 
-        // 2. Split the string into substrings
+        // 2. Lowercase, then split the string into substrings
+        // TODO: MAKE IT LOWERCASE
         string[] inputWords = input.Split(delimiterChars);
 
         // Set criteria booleans to false
@@ -75,6 +85,7 @@ public class TextInputHandler : MonoBehaviour
         {
             criteriaMet[i] = false;
         }
+        toneMet = false;
 
 
         // 3. Iterate through input substrings to check for the criteria
@@ -87,10 +98,34 @@ public class TextInputHandler : MonoBehaviour
                 if (word.Equals(emailCriteria[i]))
                     criteriaMet[i] = true;
             }
+
+            // 4. Check for tone words separately
+
+            switch(emailTone)
+            {
+                case "happy":
+                    toneFilePath = Application.dataPath + "/Tone Thesaurus/happy.txt";
+                    break;
+                case "sad":
+                    toneFilePath = Application.dataPath + "/Tone Thesaurus/sad.txt";
+                    break;
+                case "angry":
+                    toneFilePath = Application.dataPath + "/Tone Thesaurus/angry.txt";
+                    break;
+                default:
+                    Debug.LogError("Email has wrong/no tone?? [" + emailTone + "] Defaulting to happy");
+                    toneFilePath = Application.dataPath + "/Tone Thesaurus/happy.txt";
+                    break;
+            }
+            string[] toneWords = File.ReadAllLines(toneFilePath);
+            Debug.Log(toneWords[0] + toneWords[1] + toneWords.Length);
+
         }
 
-        // 4. rateDown if not all criteria met, otherwise rate Up
-        foreach(bool c in criteriaMet)
+
+
+        // 5. rateDown if not all criteria met, otherwise rate Up
+        foreach (bool c in criteriaMet)
         {
             if (c == false)
             {
