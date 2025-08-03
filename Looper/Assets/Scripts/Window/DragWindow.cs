@@ -10,7 +10,7 @@ public class DragWindow : MonoBehaviour
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();
+        rectTransform = transform.parent.GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
     }
 
@@ -20,7 +20,7 @@ public class DragWindow : MonoBehaviour
     PointerEventData data = (PointerEventData) baseData;
     
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            (RectTransform)canvas.transform,
+            (RectTransform) canvas.transform,
             data.position,
             data.pressEventCamera,
             out offset);
@@ -33,7 +33,7 @@ public class DragWindow : MonoBehaviour
         PointerEventData data = (PointerEventData)baseData;
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            (RectTransform)canvas.transform,
+            (RectTransform)  canvas.transform,
             data.position,
             data.pressEventCamera,
             out Vector2 pos);
