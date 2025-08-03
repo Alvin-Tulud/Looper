@@ -19,6 +19,7 @@ public class RoundManager : MonoBehaviour
 
     private RequestManager RQM;
     private TimeDisplay TD;
+    private EmailLooper EL;
 
     public GameObject endScreen;
     public TMP_InputField EndText;
@@ -28,6 +29,7 @@ public class RoundManager : MonoBehaviour
     {
         RQM = FindAnyObjectByType<RequestManager>();
         TD = FindAnyObjectByType<TimeDisplay>();
+        EL = FindAnyObjectByType<EmailLooper>();
         setDayText();
         setRatingText();
     }
@@ -127,5 +129,6 @@ public class RoundManager : MonoBehaviour
         TimeVars.resetCurrent();
         RQM.setRequestCount(RequestCount);
         TD.resetVars();
+        EL.resetVars();
     }
 }

@@ -1796,6 +1796,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GetInput
       objectReference: {fileID: 0}
+    - target: {fileID: 4220739926326961139, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
+      propertyPath: tabdestroy
+      value: 
+      objectReference: {fileID: 2501395040994454151}
+    - target: {fileID: 4220739926326961139, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
+      propertyPath: thingtodestroy
+      value: 
+      objectReference: {fileID: 2589995894500821075}
     - target: {fileID: 5401688110983675210, guid: 12ea5e877bf04844e8572409d2a11732, type: 3}
       propertyPath: m_text
       value: Write email here...

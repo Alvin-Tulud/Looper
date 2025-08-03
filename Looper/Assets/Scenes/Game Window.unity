@@ -746,7 +746,7 @@ PrefabInstance:
       objectReference: {fileID: 5700123270956033727, guid: 5c2b3c21d2571a8488a1af1c28491036, type: 3}
     - target: {fileID: 3688207546829149691, guid: d4891b49fefc0bd4ea6ab1aa1b4592c7, type: 3}
       propertyPath: emailChance
-      value: 0.7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3688207546829149691, guid: d4891b49fefc0bd4ea6ab1aa1b4592c7, type: 3}
       propertyPath: RequestScrollParent
@@ -754,7 +754,7 @@ PrefabInstance:
       objectReference: {fileID: 194420766}
     - target: {fileID: 3688207546829149691, guid: d4891b49fefc0bd4ea6ab1aa1b4592c7, type: 3}
       propertyPath: SecondsBetweenEmailChance
-      value: 12
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4716814827753653929, guid: d4891b49fefc0bd4ea6ab1aa1b4592c7, type: 3}
       propertyPath: m_Name
@@ -2526,7 +2526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6336023637509022456, guid: 10c6738b0d5befa46afb3736a330c0fb, type: 3}
       propertyPath: m_ChildAlignment
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6578770590598613762, guid: 10c6738b0d5befa46afb3736a330c0fb, type: 3}
       propertyPath: m_Direction

@@ -50,7 +50,7 @@ public class RequestManager : MonoBehaviour
 
                     Debug.Log(randomHourOffset + ":" + TD.getHour(randomHourOffset));
 
-                    g.GetComponent<RequestController>().setRequestTime(randomHourOffset * TimeVars.getHourFrame());
+                    g.GetComponent<RequestController>().setRequestTime((randomHourOffset - 1) * TimeVars.getHourFrame());
                     g.GetComponent<RequestController>().setEmailContents(RequestBuilder(randomHourOffset));
 
                     roundRequestCount--;
@@ -70,7 +70,7 @@ public class RequestManager : MonoBehaviour
 
                     Debug.Log(randomHourOffset + ":" + TD.getHour(randomHourOffset));
 
-                    g.GetComponent<RequestController>().setRequestTime(randomHourOffset * TimeVars.getHourFrame());
+                    g.GetComponent<RequestController>().setRequestTime((randomHourOffset - 1) * TimeVars.getHourFrame());
                     g.GetComponent<RequestController>().setEmailContents(RequestBuilder(randomHourOffset));
                 }
             }

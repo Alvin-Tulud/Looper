@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 using UnityEngine.UI;
+using System.Collections;
 
 public class EmailLooper : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class EmailLooper : MonoBehaviour
     // and then 
 
     private GameObject pointer; // Reference to the spinny pointer
+    private Vector3 pointerAngleOrigin;
     [SerializeField] private int readingEmailIndex; // Which email (which quadrant on the scheduler) was just sent?
     public string[] loadedEmails;   // The emails that are in the auto-scheduler
     public int loadedEmailIndex;    // Number of loaded emails
@@ -22,14 +24,18 @@ public class EmailLooper : MonoBehaviour
     [SerializeField] Image[] quadrants = new Image[4];
 
     [SerializeField] GameObject gridContent;
+    private List<GameObject> requestOBJ;
 
     private RoundManager roundManager;
     [SerializeField] private GameObject rm;
 
+    private bool firstOperation = true;
+
     void Start()
     {
         pointer = GameObject.FindWithTag("LooperPointer");
-        readingEmailIndex = -1; // Start at -1 so it will immediately begin at 0
+        pointerAngleOrigin = pointer.transform.eulerAngles;
+        readingEmailIndex = 0; // Start at -1 so it will immediately begin at 0
         loadedEmails = new string[4];
         loadedEmailIndex = 1;
         roundManager = rm.GetComponent<RoundManager>();
@@ -43,12 +49,22 @@ public class EmailLooper : MonoBehaviour
         //Debug.Log(rotation);
         pointer.transform.eulerAngles = new Vector3(0, 0, -rotation * 365);
 
-        // Every hour we need to:
-        // - Increment the hour
-        // - Send this hour's current email to every open request
-        // - Delete last hour's email
+        emailOperations();
+        
+    }
+    // Every hour we need to:
+    // - Increment the hour
+    // - Send this hour's current email to every open request
+    // - Delete last hour's email
+    private int emailOperations()
+    {
         if (TimeVars.getCurrent() % TimeVars.getHourFrame() == 0)
         {
+            if (firstOperation)
+            {
+                firstOperation = false;
+                return 0;
+            }
 
             // get the email from the stack
             // (currentEmailIndex % 4)
@@ -56,28 +72,77 @@ public class EmailLooper : MonoBehaviour
             // foreach(requestController in [all children of gridContent])
             // if(request.getCanCheck)
             //      CheckEmailScore(email, request.GetEmailArgs);
-            foreach(Transform child in gridContent.transform)
-            {
-                //Debug.Log("sup im " + child.gameObject.name);
-                RequestController r = child.gameObject.GetComponent<RequestController>();
-                if(r.getCanCheck())
-                {
-                    int rating = CheckEmailScore(loadedEmails[readingEmailIndex % 4], r.getEmailArgs());
-                    roundManager.setRating(rating);
-                    Debug.Log("Just applied rating of " + rating);
-                }
-            }
 
-            readingEmailIndex++;
+            checkReadyRequests();
 
             // Delete last hour's email
             // idk if this if statement is even necessary
-            if (!String.IsNullOrWhiteSpace(loadedEmails[(readingEmailIndex - 1) % 4]))
+
+            deletePrev();
+        }
+
+        return 0;
+    }
+
+    public void resetVars()
+    {
+        firstOperation = true;
+
+        pointer.transform.eulerAngles = pointerAngleOrigin;
+
+        for (int i = 0; i < loadedEmails.Length; i++)
+        {
+            loadedEmails[i] = "";
+        }
+
+        readingEmailIndex = -1;
+        loadedEmailIndex = 0;
+    }
+
+    private void checkReadyRequests()
+    {
+        requestOBJ = new List<GameObject>();
+
+        foreach (Transform child in gridContent.transform)
+        {
+            //Debug.Log("sup im " + child.gameObject.name);
+            RequestController r = child.gameObject.GetComponent<RequestController>();
+            if (r.getCanCheck())
             {
-                Debug.Log("Deleting this email: " + loadedEmails[(readingEmailIndex - 1) % 4] + "@ position " + (readingEmailIndex - 1) % 4);
-                loadedEmails[(readingEmailIndex - 1) % 4] = null;
-                quadrants[(readingEmailIndex - 1) % 4].color = Color.white;
+                int rating = CheckEmailScore(loadedEmails[readingEmailIndex % 4], r.getEmailArgs());
+                roundManager.setRating(rating);
+                Debug.Log("Just applied rating of " + rating);
+
+                requestOBJ.Add(child.gameObject);
             }
+        }
+
+        StartCoroutine(pauseDestroyRequests());
+    }
+
+    private void deletePrev()
+    {
+        Debug.Log((readingEmailIndex) % 4);
+
+        if (!String.IsNullOrWhiteSpace(loadedEmails[(readingEmailIndex) % 4]))
+        {
+            Debug.Log("Deleting this email: " + loadedEmails[(readingEmailIndex - 1) % 4] + "@ position " + (readingEmailIndex - 1) % 4);
+            loadedEmails[(readingEmailIndex) % 4] = null;
+            quadrants[(readingEmailIndex) % 4].color = Color.white;
+        }
+
+        readingEmailIndex++;
+    }
+
+    private IEnumerator pauseDestroyRequests()
+    {
+        yield return new WaitForSeconds(2);
+
+        GameObject[] ReqOBJPointers = requestOBJ.ToArray();
+
+        for (int i = 0; i < ReqOBJPointers.Length; i++)
+        {
+            Destroy(ReqOBJPointers[i]);
         }
     }
 
@@ -118,6 +183,7 @@ public class EmailLooper : MonoBehaviour
         // 1. Check length requirement
         if (input.Length < int.Parse(emailArgs[1])) // TODO FIX CHARCOUNT TO THE PROPER VARIABLE
         {
+            Debug.Log("email too short");
             return rateDown;
         }
 

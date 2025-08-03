@@ -9,6 +9,8 @@ public class TextInputHandler : MonoBehaviour
     // reads the input text.
 
     [SerializeField] private string inputText; // Stores the text string here
+    public GameObject thingtodestroy;
+    public GameObject tabdestroy;
 
     void Start()
     {
@@ -31,7 +33,8 @@ public class TextInputHandler : MonoBehaviour
         if(result)
         {
             Debug.Log("Added email: " + inputText);
-            Destroy(transform.parent.parent.parent.gameObject);
+            Destroy(thingtodestroy);
+            Destroy(tabdestroy);
         }
 
     }
