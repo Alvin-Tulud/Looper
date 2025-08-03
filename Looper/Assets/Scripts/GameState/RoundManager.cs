@@ -19,6 +19,10 @@ public class RoundManager : MonoBehaviour
 
     private RequestManager RQM;
     private TimeDisplay TD;
+
+    public GameObject endScreen;
+    public TMP_InputField EndText;
+    private string[] endWords = { "Thank you for your work intern.\r\nWe will be moving forward with your\r\nJob Offer.", "Thank you for being here.\r\nUnfortunately we found other\r\ncandidtates well suited for the job.\r\nTry again next Year." };
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -75,6 +79,9 @@ public class RoundManager : MonoBehaviour
 
                 if (currentRoundCount == maxRoundCount)
                 {
+                    endScreen.SetActive(true);
+                    EndText.text = endWords[0];
+                    EndText.text += "\nTotal Rating: " + TotalRating;
                     //do end screen stuff show end rating and a good job intern we're giving you an offer
                 }
                 else
@@ -87,6 +94,9 @@ public class RoundManager : MonoBehaviour
             }
             else
             {
+                endScreen.SetActive(true);
+                EndText.text = endWords[0];
+                EndText.text += "\nTotal Rating: " + TotalRating;
                 //do end screen stuff and show end rating and a bad job employee youve been fired
             }
         }
