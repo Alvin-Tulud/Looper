@@ -20,6 +20,9 @@ public class CreateWindow : MonoBehaviour
     {
         if (spawnPoint != null)
         {
+            // Window click SFX
+            AudioSO.PlayOneShot("event:/windowClick");
+
             // Spawn both items first
             GameObject newWindow = Instantiate(prefabToSpawn, spawnPoint.transform.position, spawnPoint.transform.rotation,mailParent.transform);
 

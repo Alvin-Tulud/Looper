@@ -41,6 +41,7 @@ public class RequestManager : MonoBehaviour
                 //30% chance of getting an email request every 12 seconds
                 if (chance >= emailChance)
                 {
+                    AudioSO.PlayOneShot("event:/emailRecieve");
                     GameObject g = Instantiate(RequestOBJ);
                     g.transform.SetParent(RequestScrollParent.transform, false);
 

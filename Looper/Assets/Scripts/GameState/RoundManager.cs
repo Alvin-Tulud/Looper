@@ -27,6 +27,10 @@ public class RoundManager : MonoBehaviour
         setDayText();
         setRatingText();
     }
+    private void Start()
+    {
+        AudioSO.PlayOneShot("event:/music");
+    }
 
     private void FixedUpdate()
     {
@@ -41,10 +45,12 @@ public class RoundManager : MonoBehaviour
         if (rating > 0)
         {
             //play good jingle
+            AudioSO.PlayOneShot("event:/emailAccepted");
         }
         else
         {
             //play bad jingle
+            AudioSO.PlayOneShot("event:/emailRejected");
         }
     }
 
