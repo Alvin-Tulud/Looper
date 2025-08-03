@@ -17,7 +17,7 @@ public class TextInputHandler : MonoBehaviour
     //private string[] emailSubject;
     //private string[] emailTone;
     //private string[] emailVerb;
-    private string[] emailCriteria; // List of all words needed for the email
+    [SerializeField] private string[] emailCriteria; // List of all words needed for the email
     private int charCount;          // Minimum char count
     private int rateUp;             // Score if passed
     private int rateDown;           // Score if failed
@@ -52,7 +52,7 @@ public class TextInputHandler : MonoBehaviour
         inputText = input;
 
         // 1. Check length requirement
-        if (input < charCount)
+        if (input.Length < charCount)
         {
             finalRating = rateDown;
         }
@@ -61,8 +61,11 @@ public class TextInputHandler : MonoBehaviour
         string[] inputWords = input.Split(delimiterChars);
 
         // Set criteria booleans to false
-        foreach (bool c in criteriaMet)
-            c == false;
+        for(int i=0; i<criteriaMet.Length; i++)
+        {
+            criteriaMet[i] = false;
+        }
+
 
         // 3. Iterate through input substrings to check for the criteria
         foreach (string word in inputWords)
