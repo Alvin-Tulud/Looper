@@ -1558,9 +1558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4776784762332960428, guid: 10c6738b0d5befa46afb3736a330c0fb, type: 3}
       propertyPath: m_text
-      value: 'Add New Window
-
-'
+      value: Write New Email
       objectReference: {fileID: 0}
     - target: {fileID: 4776784762332960428, guid: 10c6738b0d5befa46afb3736a330c0fb, type: 3}
       propertyPath: m_fontSize
@@ -1778,7 +1776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.4481132, b: 0.4481132, a: 1}
+  m_Color: {r: 0.18431373, g: 0.6392157, b: 0.94117653, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

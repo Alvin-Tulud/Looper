@@ -109,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.052002, y: 0.74499893}
-  m_SizeDelta: {x: 1.780422, y: 1.092979}
+  m_AnchoredPosition: {x: 1.5278, y: 0.67199105}
+  m_SizeDelta: {x: 2.732, y: 1.238995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6841376115907302579
 CanvasRenderer:
@@ -143,8 +143,8 @@ MonoBehaviour:
   m_text: An email to me of atleast 200 characters for my sons swim team about their
     victory
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2fe50454db273cd41b348b63de7a65d7, type: 2}
+  m_sharedMaterial: {fileID: 6368168812065904837, guid: 2fe50454db273cd41b348b63de7a65d7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.14
-  m_fontSizeBase: 0.14
+  m_fontSize: 0.2
+  m_fontSizeBase: 0.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -279,8 +279,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2fe50454db273cd41b348b63de7a65d7, type: 2}
+  m_sharedMaterial: {fileID: 6368168812065904837, guid: 2fe50454db273cd41b348b63de7a65d7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4292453, g: 0.4292453, b: 0.4292453, a: 1}
+  m_Color: {r: 0.2285066, g: 0.45675465, b: 0.745283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -490,8 +490,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2fe50454db273cd41b348b63de7a65d7, type: 2}
+  m_sharedMaterial: {fileID: 6368168812065904837, guid: 2fe50454db273cd41b348b63de7a65d7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -585,7 +585,7 @@ RectTransform:
   m_GameObject: {fileID: 5700123270956033727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 120.00001, y: 120.00001, z: 120.00001}
+  m_LocalScale: {x: 140, y: 140, z: 140}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5215139634068269362}
