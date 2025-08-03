@@ -27,6 +27,6 @@ public class TextInputHandler : MonoBehaviour
         EmailLooper e = GameObject.FindWithTag("EmailLooper").GetComponent<EmailLooper>();
         e.AddEmail(inputText);
 
-        Destroy(this.gameObject);
+        Destroy(transform.parent.parent.parent.gameObject);
     }
 }

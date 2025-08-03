@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.UI;
 
 public class EmailLooper : MonoBehaviour
 {
@@ -9,20 +10,22 @@ public class EmailLooper : MonoBehaviour
     // and then 
 
     private GameObject pointer; // Reference to the spinny pointer
-    private int currentEmailIndex; // Which email (which quadrant on the scheduler) was just sent?
+    private int readingEmailIndex; // Which email (which quadrant on the scheduler) was just sent?
     public string[] loadedEmails;   // The emails that are in the auto-scheduler
-    public int numberOfLoadedEmails;    // Number of loaded emails
+    public int loadedEmailIndex;    // Number of loaded emails
 
     // (Delimit all kinds of spaces, grammar, etc. to get just the words out.
     // Helps in cases like son's -> find the word "son" within)
     private char[] delimiterChars = { ' ', ',', '.', ':', ';', '\t', '\'', '\"', '/', '\n', '*' };
 
+    [SerializeField] Image[] quadrants = new Image[4];
+
     void Start()
     {
         pointer = GameObject.FindWithTag("LooperPointer");
-        currentEmailIndex = -1; // Start at -1 so it will immediately begin at 0
+        readingEmailIndex = -1; // Start at -1 so it will immediately begin at 0
         loadedEmails = new string[4];
-        numberOfLoadedEmails = 0;
+        loadedEmailIndex = 1;
     }
 
 
@@ -39,7 +42,7 @@ public class EmailLooper : MonoBehaviour
         // - Delete last hour's email
         if (TimeVars.getCurrent() % TimeVars.getHourFrame() == 0)
         {
-            currentEmailIndex++;
+            readingEmailIndex++;
             // get the email from the stack
             // (currentEmailIndex % 4)
             // FIRE AWAY at every available coworker request
@@ -57,10 +60,17 @@ public class EmailLooper : MonoBehaviour
     // Adds the email to the list of emails
     public void AddEmail(string email)
     {
-        if(numberOfLoadedEmails < 4)
+        // If there's space, add an email in that quadrant then move to the next
+        if(loadedEmails[loadedEmailIndex] == null)
         {
-            numberOfLoadedEmails++;
-            // uhh idk I forgot
+            // add email here
+            loadedEmails[loadedEmailIndex] = email;
+
+            // change color to indicate email was added
+            quadrants[loadedEmailIndex].color = Color.green;
+            
+            // increment quadrant
+            loadedEmailIndex = (loadedEmailIndex + 1) % 4;
         }
     }
 
