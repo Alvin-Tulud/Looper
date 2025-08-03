@@ -2397,6 +2397,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6336023637509022456, guid: 10c6738b0d5befa46afb3736a330c0fb, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6578770590598613762, guid: 10c6738b0d5befa46afb3736a330c0fb, type: 3}
       propertyPath: m_Direction
       value: 1
