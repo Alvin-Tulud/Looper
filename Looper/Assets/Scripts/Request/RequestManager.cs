@@ -86,7 +86,7 @@ public class RequestManager : MonoBehaviour
         requestArr[1] = charCounts[randChar].ToString();
         requestArr[3] = emailTone[randTone];
 
-        requestArr[0] = "Please replay with a " +
+        requestArr[0] = "Please reply with a " +
                         requestArr[3];
 
         float pickSubjectType = Random.Range(0f, 1f);
@@ -122,7 +122,7 @@ public class RequestManager : MonoBehaviour
                         requestArr[4];
         }
 
-        requestArr[0] += " in atleast " +
+        requestArr[0] += " in at least " +
                         requestArr[1] +
                         " characters. \nHave it ready by " + setText(hourindex);
 
