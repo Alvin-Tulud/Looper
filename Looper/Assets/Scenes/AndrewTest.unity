@@ -377,8 +377,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 904193515}
-        m_TargetAssemblyTypeName: TextInputGrabber, Assembly-CSharp
-        m_MethodName: GetInput
+        m_TargetAssemblyTypeName: TextInputHandler, Assembly-CSharp
+        m_MethodName: CheckEmailScore
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -460,6 +460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputText: 
+  finalRating: 0
+  emailCriteria: []
+  rateUp: 0
+  rateDown: 0
 --- !u!1 &971252310
 GameObject:
   m_ObjectHideFlags: 0

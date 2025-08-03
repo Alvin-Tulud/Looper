@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 public class TextInputHandler : MonoBehaviour
 {
@@ -19,11 +20,11 @@ public class TextInputHandler : MonoBehaviour
     //private string[] emailVerb;
     [SerializeField] private string[] emailCriteria; // List of all words needed for the email
     private int charCount;          // Minimum char count
-    private int rateUp;             // Score if passed
-    private int rateDown;           // Score if failed
+    [SerializeField] private int rateUp;             // Score if passed
+    [SerializeField] private int rateDown;           // Score if failed
 
     // Booleans to check if criteria are met
-    private bool[] criteriaMet;
+    [SerializeField] private bool[] criteriaMet;
 
     void Start()
     {
@@ -31,6 +32,14 @@ public class TextInputHandler : MonoBehaviour
         // Fill my variables with input from RequestArr
         // (and don't forget to split the strings for multiple words)
         // *** PARSE IF NECESSARY THEN COMBINE ALL OF THEM INTO A SINGLE LIST OF WORDS
+
+        // junk data for now
+        List<string> testList = new List<string>();
+        testList.Add("son");
+        testList.Add("goku");
+        emailCriteria = testList.ToArray();
+        rateUp = 5;
+        rateDown = -5;
 
         // (and then initialize bools based on length of subject/tone/verb)
         criteriaMet = new bool[emailCriteria.Length];
@@ -55,6 +64,7 @@ public class TextInputHandler : MonoBehaviour
         if (input.Length < charCount)
         {
             finalRating = rateDown;
+            return;
         }
 
         // 2. Split the string into substrings
@@ -83,9 +93,15 @@ public class TextInputHandler : MonoBehaviour
         foreach(bool c in criteriaMet)
         {
             if (c == false)
+            {
+                Debug.Log(c);
                 finalRating = rateDown;
+                return;
+            }
+
         }
 
         finalRating = rateUp;
+        return;
     }
 }
