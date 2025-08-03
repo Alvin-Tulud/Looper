@@ -106,4 +106,10 @@ public class TimeDisplay : MonoBehaviour
 
     public int getHour(int index) { return hours[index]; }
     public int getHourIndex() { return hourIndex; }
+
+    public void resetVars()
+    {
+        ignorefirst = true;
+        doonce = true;
+    }
 }

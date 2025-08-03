@@ -45,7 +45,7 @@ public class RequestManager : MonoBehaviour
                     g.transform.SetParent(RequestScrollParent.transform, false);
 
                     //set the email to be due within the next 1 - 3 "hours"
-                    int randomHourOffset = Random.Range(TD.getHourIndex() + 2, TD.getHourIndex() + 5);
+                    int randomHourOffset = Random.Range(TD.getHourIndex() + 3, TD.getHourIndex() + 5);
 
                     Debug.Log(randomHourOffset + ":" + TD.getHour(randomHourOffset));
 
@@ -65,7 +65,7 @@ public class RequestManager : MonoBehaviour
                     g.transform.SetParent(RequestScrollParent.transform, false);
 
                     //set the email to be due within the next 1 - 3 "hours"
-                    int randomHourOffset = Random.Range(TD.getHourIndex() + 2, TD.getHourIndex() + 4);
+                    int randomHourOffset = Random.Range(TD.getHourIndex() + 3, TD.getHourIndex() + 4);
 
                     Debug.Log(randomHourOffset + ":" + TD.getHour(randomHourOffset));
 
@@ -88,9 +88,9 @@ public class RequestManager : MonoBehaviour
         requestArr[0] = "Please replay with a " +
                         requestArr[3];
 
-        int pickSubjectType = Random.Range(0, 1);
+        float pickSubjectType = Random.Range(0f, 1f);
 
-        if (pickSubjectType == 0)
+        if (pickSubjectType <= 0.4f)
         {
             int randSubject = Random.Range(0, emailSubjectPerson.Length);
             int randVerb = Random.Range(0, emailVerbPerson.Length);
