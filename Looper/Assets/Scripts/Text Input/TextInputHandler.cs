@@ -100,36 +100,51 @@ public class TextInputHandler : MonoBehaviour
             }
 
             // 4. Check for tone words separately
-
-            switch(emailTone)
+            if(toneMet == false)
             {
-                case "happy":
-                    toneFilePath = Application.dataPath + "/Tone Thesaurus/happy.txt";
-                    break;
-                case "sad":
-                    toneFilePath = Application.dataPath + "/Tone Thesaurus/sad.txt";
-                    break;
-                case "angry":
-                    toneFilePath = Application.dataPath + "/Tone Thesaurus/angry.txt";
-                    break;
-                default:
-                    Debug.LogError("Email has wrong/no tone?? [" + emailTone + "] Defaulting to happy");
-                    toneFilePath = Application.dataPath + "/Tone Thesaurus/happy.txt";
-                    break;
+                switch (emailTone)
+                {
+                    case "happy":
+                        toneFilePath = Application.dataPath + "/Tone Thesaurus/happy.txt";
+                        break;
+                    case "sad":
+                        toneFilePath = Application.dataPath + "/Tone Thesaurus/sad.txt";
+                        break;
+                    case "angry":
+                        toneFilePath = Application.dataPath + "/Tone Thesaurus/angry.txt";
+                        break;
+                    default:
+                        Debug.LogError("Email has wrong/no tone?? [" + emailTone + "] Defaulting to happy");
+                        toneFilePath = Application.dataPath + "/Tone Thesaurus/happy.txt";
+                        break;
+                }
+                string[] toneWords = File.ReadAllLines(toneFilePath);
+                Debug.Log(toneWords[0] + toneWords[1] + toneWords.Length);
+                foreach (string toneWord in toneWords)
+                {
+                    if (word.Equals(toneWord))
+                    {
+                        toneMet = true;
+                        break;
+                    }
+                }
             }
-            string[] toneWords = File.ReadAllLines(toneFilePath);
-            Debug.Log(toneWords[0] + toneWords[1] + toneWords.Length);
-
         }
 
 
 
         // 5. rateDown if not all criteria met, otherwise rate Up
+        if (toneMet == false)
+        {
+            Debug.Log("Did not meet tone criteria");
+            finalRating = rateDown;
+            return;
+        }
         foreach (bool c in criteriaMet)
         {
             if (c == false)
             {
-                Debug.Log(c);
+                Debug.Log("not all criteria met, rating down");
                 finalRating = rateDown;
                 return;
             }
