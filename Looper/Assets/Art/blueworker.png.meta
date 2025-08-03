@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      blueworker_0: -1933364962729552471
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
