@@ -13,6 +13,7 @@ public class TimeDisplay : MonoBehaviour
     private bool canUpdate;
 
     private bool doonce = true;
+    private bool ignorefirst = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,12 +46,19 @@ public class TimeDisplay : MonoBehaviour
         canUpdate = TimeVars.getCanUpdate();
     }
 
-    private void lerpTime()
+    private int lerpTime()
     {
         int minute = TimeVars.getCurrent() % TimeVars.getHourFrame();
         //Debug.Log("lerping: " + currentMinute + " : " + TimeVars.getCurrent() + " : " + minute);
         if (minute == 0)
         {
+            if (ignorefirst)
+            {
+                ignorefirst = false;
+
+                return 0;
+            }
+
             Debug.Log("lerping: " + currentHour + ":" + currentMinute + " : " + TimeVars.getCurrent() + " : " + minute);
 
             hourIndex++;
@@ -72,6 +80,8 @@ public class TimeDisplay : MonoBehaviour
         {
             currentMinute = (int)Mathf.Lerp(0, minuteMax, (float)minute / TimeVars.getHourFrame());
         }
+
+        return 0;
     }
 
     private void setText()
@@ -93,4 +103,7 @@ public class TimeDisplay : MonoBehaviour
 
 
     }
+
+    public int getHour(int index) { return hours[index]; }
+    public int getHourIndex() { return hourIndex; }
 }

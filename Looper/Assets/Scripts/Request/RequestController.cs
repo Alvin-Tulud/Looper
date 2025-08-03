@@ -1,35 +1,55 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class RequestController : MonoBehaviour
 {
     public Slider requestTimeSlider;
-    private int requestTimeTotal;
-    private int requestTimeCurrent;
+    private int TimeEnd;
+    private int TimeStart;
 
     public TextMeshProUGUI requestEmailContents;
+    public TextMeshProUGUI ratingUp;
+    public TextMeshProUGUI ratingDown;
+    private string[] emailArgs;
 
     private bool requestCompleted = false;
 
+    private void FixedUpdate()
+    {
+        incrementRequestTime();
+    }
 
     private void incrementRequestTime()
     {
-        requestTimeCurrent++;
-        requestTimeSlider.value = requestTimeCurrent;
+        if (TimeVars.getCurrent() < TimeEnd)
+        {
+            requestTimeSlider.value = (int)(100 * ((float)(TimeVars.getCurrent() - TimeStart) / (TimeEnd - TimeStart)));
+        }
+        else
+        {
+            requestTimeSlider.value = requestTimeSlider.maxValue;
+        }
     }
     
     public void setRequestTime(int requestTime)
     {
-        this.requestTimeTotal = requestTime;
-        this.requestTimeCurrent = 0;
-        requestTimeSlider.highValue = requestTime;
+        this.TimeEnd = requestTime;
+        this.TimeStart = TimeVars.getCurrent();
+
+        requestTimeSlider.value = 0;
     }
 
-    public void setEmailContents()
+    public void setEmailContents(string[] args)
     {
+        emailArgs = args;
 
+        requestEmailContents.text = emailArgs[0];
+        ratingUp.text = emailArgs[5];
+        ratingDown.text = emailArgs[6];
     }
+
+    public string[] getEmailArgs() { return emailArgs; }
 
     public void setRequestCompleted(bool requestCompleted) { this.requestCompleted = requestCompleted; }
 
