@@ -72,7 +72,7 @@ public class EmailLooper : MonoBehaviour
 
             // Delete last hour's email
             // idk if this if statement is even necessary
-            if (String.IsNullOrWhiteSpace(loadedEmails[(readingEmailIndex - 1) % 4]))
+            if (!String.IsNullOrWhiteSpace(loadedEmails[(readingEmailIndex - 1) % 4]))
             {
                 Debug.Log("Deleting this email: " + loadedEmails[(readingEmailIndex - 1) % 4] + "@ position " + (readingEmailIndex - 1) % 4);
                 loadedEmails[(readingEmailIndex - 1) % 4] = null;
