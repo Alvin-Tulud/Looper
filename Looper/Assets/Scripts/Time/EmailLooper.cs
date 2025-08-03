@@ -22,12 +22,16 @@ public class EmailLooper : MonoBehaviour
 
     [SerializeField] GameObject gridContent;
 
+    private RoundManager roundManager;
+    [SerializeField] private GameObject rm;
+
     void Start()
     {
         pointer = GameObject.FindWithTag("LooperPointer");
         readingEmailIndex = -1; // Start at -1 so it will immediately begin at 0
         loadedEmails = new string[4];
         loadedEmailIndex = 1;
+        roundManager = rm.GetComponent<RoundManager>();
     }
 
 
@@ -51,6 +55,17 @@ public class EmailLooper : MonoBehaviour
             // foreach(requestController in [all children of gridContent])
             // if(request.getCanCheck)
             //      CheckEmailScore(email, request.GetEmailArgs);
+            foreach(Transform child in gridContent.transform)
+            {
+                //Debug.Log("sup im " + child.gameObject.name);
+                RequestController r = child.gameObject.GetComponent<RequestController>();
+                if(r.getCanCheck())
+                {
+                    int rating = CheckEmailScore(loadedEmails[readingEmailIndex % 4], r.getEmailArgs());
+                    roundManager.setRating(rating);
+                    Debug.Log("Just applied rating of " + rating);
+                }
+            }
 
 
 
